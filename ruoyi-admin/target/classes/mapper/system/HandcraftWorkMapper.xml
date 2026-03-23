@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HandcraftWorkMapper">
+    
+    <resultMap type="HandcraftWork" id="HandcraftWorkResult">
+        <result property="id"    column="id"    />
+        <result property="workName"    column="work_name"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="artistId"    column="artist_id"    />
+        <result property="workPic"    column="work_pic"    />
+        <result property="workVideo"    column="work_video"    />
+        <result property="createBg"    column="create_bg"    />
+        <result property="culturalConnotation"    column="cultural_connotation"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectHandcraftWorkVo">
+        select id, work_name, category_id, artist_id, work_pic, work_video, create_bg, cultural_connotation, create_time, update_time from handcraft_work
+    </sql>
+
+    <select id="selectHandcraftWorkList" parameterType="HandcraftWork" resultMap="HandcraftWorkResult">
+        <include refid="selectHandcraftWorkVo"/>
+        <where>  
+            <if test="workName != null  and workName != ''"> and work_name like concat('%', #{workName}, '%')</if>
+            <if test="categoryId != null "> and category_id = #{categoryId}</if>
+            <if test="artistId != null "> and artist_id = #{artistId}</if>
+            <if test="workPic != null  and workPic != ''"> and work_pic = #{workPic}</if>
+            <if test="workVideo != null  and workVideo != ''"> and work_video = #{workVideo}</if>
+            <if test="createBg != null  and createBg != ''"> and create_bg = #{createBg}</if>
+            <if test="culturalConnotation != null  and culturalConnotation != ''"> and cultural_connotation = #{culturalConnotation}</if>
+        </where>
+    </select>
+    
+    <select id="selectHandcraftWorkById" parameterType="Long" resultMap="HandcraftWorkResult">
+        <include refid="selectHandcraftWorkVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHandcraftWork" parameterType="HandcraftWork" useGeneratedKeys="true" keyProperty="id">
+        insert into handcraft_work
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="workName != null and workName != ''">work_name,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="artistId != null">artist_id,</if>
+            <if test="workPic != null">work_pic,</if>
+            <if test="workVideo != null">work_video,</if>
+            <if test="createBg != null">create_bg,</if>
+            <if test="culturalConnotation != null">cultural_connotation,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="workName != null and workName != ''">#{workName},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="artistId != null">#{artistId},</if>
+            <if test="workPic != null">#{workPic},</if>
+            <if test="workVideo != null">#{workVideo},</if>
+            <if test="createBg != null">#{createBg},</if>
+            <if test="culturalConnotation != null">#{culturalConnotation},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHandcraftWork" parameterType="HandcraftWork">
+        update handcraft_work
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="workName != null and workName != ''">work_name = #{workName},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="artistId != null">artist_id = #{artistId},</if>
+            <if test="workPic != null">work_pic = #{workPic},</if>
+            <if test="workVideo != null">work_video = #{workVideo},</if>
+            <if test="createBg != null">create_bg = #{createBg},</if>
+            <if test="culturalConnotation != null">cultural_connotation = #{culturalConnotation},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHandcraftWorkById" parameterType="Long">
+        delete from handcraft_work where id = #{id}
+    </delete>
+
+    <delete id="deleteHandcraftWorkByIds" parameterType="String">
+        delete from handcraft_work where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

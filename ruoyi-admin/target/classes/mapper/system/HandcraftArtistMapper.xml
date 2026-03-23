@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HandcraftArtistMapper">
+    
+    <resultMap type="HandcraftArtist" id="HandcraftArtistResult">
+        <result property="id"    column="id"    />
+        <result property="artistName"    column="artist_name"    />
+        <result property="gender"    column="gender"    />
+        <result property="birthDate"    column="birth_date"    />
+        <result property="region"    column="region"    />
+        <result property="specialty"    column="specialty"    />
+        <result property="resume"    column="resume"    />
+        <result property="representWorks"    column="represent_works"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectHandcraftArtistVo">
+        select id, artist_name, gender, birth_date, region, specialty, resume, represent_works, create_time, update_time from handcraft_artist
+    </sql>
+
+    <select id="selectHandcraftArtistList" parameterType="HandcraftArtist" resultMap="HandcraftArtistResult">
+        <include refid="selectHandcraftArtistVo"/>
+        <where>  
+            <if test="artistName != null  and artistName != ''"> and artist_name like concat('%', #{artistName}, '%')</if>
+            <if test="gender != null  and gender != ''"> and gender = #{gender}</if>
+            <if test="birthDate != null "> and birth_date = #{birthDate}</if>
+            <if test="region != null  and region != ''"> and region = #{region}</if>
+            <if test="specialty != null  and specialty != ''"> and specialty = #{specialty}</if>
+            <if test="resume != null  and resume != ''"> and resume = #{resume}</if>
+            <if test="representWorks != null  and representWorks != ''"> and represent_works = #{representWorks}</if>
+        </where>
+    </select>
+    
+    <select id="selectHandcraftArtistById" parameterType="Long" resultMap="HandcraftArtistResult">
+        <include refid="selectHandcraftArtistVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHandcraftArtist" parameterType="HandcraftArtist" useGeneratedKeys="true" keyProperty="id">
+        insert into handcraft_artist
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="artistName != null and artistName != ''">artist_name,</if>
+            <if test="gender != null">gender,</if>
+            <if test="birthDate != null">birth_date,</if>
+            <if test="region != null">region,</if>
+            <if test="specialty != null">specialty,</if>
+            <if test="resume != null">resume,</if>
+            <if test="representWorks != null">represent_works,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="artistName != null and artistName != ''">#{artistName},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="birthDate != null">#{birthDate},</if>
+            <if test="region != null">#{region},</if>
+            <if test="specialty != null">#{specialty},</if>
+            <if test="resume != null">#{resume},</if>
+            <if test="representWorks != null">#{representWorks},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHandcraftArtist" parameterType="HandcraftArtist">
+        update handcraft_artist
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="artistName != null and artistName != ''">artist_name = #{artistName},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="birthDate != null">birth_date = #{birthDate},</if>
+            <if test="region != null">region = #{region},</if>
+            <if test="specialty != null">specialty = #{specialty},</if>
+            <if test="resume != null">resume = #{resume},</if>
+            <if test="representWorks != null">represent_works = #{representWorks},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHandcraftArtistById" parameterType="Long">
+        delete from handcraft_artist where id = #{id}
+    </delete>
+
+    <delete id="deleteHandcraftArtistByIds" parameterType="String">
+        delete from handcraft_artist where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

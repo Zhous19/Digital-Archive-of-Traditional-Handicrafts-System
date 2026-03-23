@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HandcraftTechMapper">
+    
+    <resultMap type="HandcraftTech" id="HandcraftTechResult">
+        <result property="id"    column="id"    />
+        <result property="techName"    column="tech_name"    />
+        <result property="categoryId"    column="category_id"    />
+        <result property="processFlow"    column="process_flow"    />
+        <result property="toolsMaterials"    column="tools_materials"    />
+        <result property="techPoints"    column="tech_points"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectHandcraftTechVo">
+        select id, tech_name, category_id, process_flow, tools_materials, tech_points, create_time, update_time from handcraft_tech
+    </sql>
+
+    <select id="selectHandcraftTechList" parameterType="HandcraftTech" resultMap="HandcraftTechResult">
+        <include refid="selectHandcraftTechVo"/>
+        <where>  
+            <if test="techName != null  and techName != ''"> and tech_name like concat('%', #{techName}, '%')</if>
+            <if test="categoryId != null "> and category_id = #{categoryId}</if>
+            <if test="processFlow != null  and processFlow != ''"> and process_flow = #{processFlow}</if>
+            <if test="toolsMaterials != null  and toolsMaterials != ''"> and tools_materials = #{toolsMaterials}</if>
+            <if test="techPoints != null  and techPoints != ''"> and tech_points = #{techPoints}</if>
+        </where>
+    </select>
+    
+    <select id="selectHandcraftTechById" parameterType="Long" resultMap="HandcraftTechResult">
+        <include refid="selectHandcraftTechVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHandcraftTech" parameterType="HandcraftTech" useGeneratedKeys="true" keyProperty="id">
+        insert into handcraft_tech
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="techName != null and techName != ''">tech_name,</if>
+            <if test="categoryId != null">category_id,</if>
+            <if test="processFlow != null">process_flow,</if>
+            <if test="toolsMaterials != null">tools_materials,</if>
+            <if test="techPoints != null">tech_points,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="techName != null and techName != ''">#{techName},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="processFlow != null">#{processFlow},</if>
+            <if test="toolsMaterials != null">#{toolsMaterials},</if>
+            <if test="techPoints != null">#{techPoints},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHandcraftTech" parameterType="HandcraftTech">
+        update handcraft_tech
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="techName != null and techName != ''">tech_name = #{techName},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="processFlow != null">process_flow = #{processFlow},</if>
+            <if test="toolsMaterials != null">tools_materials = #{toolsMaterials},</if>
+            <if test="techPoints != null">tech_points = #{techPoints},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHandcraftTechById" parameterType="Long">
+        delete from handcraft_tech where id = #{id}
+    </delete>
+
+    <delete id="deleteHandcraftTechByIds" parameterType="String">
+        delete from handcraft_tech where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
