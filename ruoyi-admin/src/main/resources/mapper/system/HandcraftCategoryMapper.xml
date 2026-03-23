@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HandcraftCategoryMapper">
+    
+    <resultMap type="HandcraftCategory" id="HandcraftCategoryResult">
+        <result property="id"    column="id"    />
+        <result property="categoryName"    column="category_name"    />
+        <result property="categoryDesc"    column="category_desc"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectHandcraftCategoryVo">
+        select id, category_name, category_desc, create_time, update_time from handcraft_category
+    </sql>
+
+    <select id="selectHandcraftCategoryList" parameterType="HandcraftCategory" resultMap="HandcraftCategoryResult">
+        <include refid="selectHandcraftCategoryVo"/>
+        <where>  
+            <if test="categoryName != null  and categoryName != ''"> and category_name like concat('%', #{categoryName}, '%')</if>
+            <if test="categoryDesc != null  and categoryDesc != ''"> and category_desc = #{categoryDesc}</if>
+        </where>
+    </select>
+    
+    <select id="selectHandcraftCategoryById" parameterType="Long" resultMap="HandcraftCategoryResult">
+        <include refid="selectHandcraftCategoryVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertHandcraftCategory" parameterType="HandcraftCategory" useGeneratedKeys="true" keyProperty="id">
+        insert into handcraft_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null and categoryName != ''">category_name,</if>
+            <if test="categoryDesc != null">category_desc,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryName != null and categoryName != ''">#{categoryName},</if>
+            <if test="categoryDesc != null">#{categoryDesc},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHandcraftCategory" parameterType="HandcraftCategory">
+        update handcraft_category
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="categoryName != null and categoryName != ''">category_name = #{categoryName},</if>
+            <if test="categoryDesc != null">category_desc = #{categoryDesc},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteHandcraftCategoryById" parameterType="Long">
+        delete from handcraft_category where id = #{id}
+    </delete>
+
+    <delete id="deleteHandcraftCategoryByIds" parameterType="String">
+        delete from handcraft_category where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
