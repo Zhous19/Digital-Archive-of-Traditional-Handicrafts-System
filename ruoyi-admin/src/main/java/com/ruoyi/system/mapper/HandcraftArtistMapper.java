@@ -1,6 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.system.domain.HandcraftArtist;
 
 /**
@@ -58,4 +59,11 @@ public interface HandcraftArtistMapper
      * @return 结果
      */
     public int deleteHandcraftArtistByIds(Long[] ids);
+
+    /**
+     * 查询地域统计数据
+     * 
+     * @return 地域统计数据
+     */
+    public List<Map<String, Object>> selectRegionCount();
 }

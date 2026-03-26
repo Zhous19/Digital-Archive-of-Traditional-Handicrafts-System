@@ -54,10 +54,6 @@
         </div>
       </el-form-item>
     </el-form>
-    <!--  底部  -->
-    <div class="el-login-footer">
-      <span>Copyright © 2018-2025 ruoyi.vip All Rights Reserved.</span>
-    </div>
   </div>
 </template>
 
@@ -70,7 +66,7 @@ export default {
   name: "Login",
   data() {
     return {
-      title: process.env.VUE_APP_TITLE,
+      title: '传统手工艺数字档案库',
       codeUrl: "",
       loginForm: {
         username: "admin",
@@ -157,34 +153,49 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
 .login {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100%;
   background-image: url("../assets/images/login-background.jpg");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 100px;
 }
 .title {
   margin: 0px auto 30px auto;
   text-align: center;
-  color: #707070;
+  color: #333333;
+  font-weight: bold;
 }
 
 .login-form {
-  border-radius: 6px;
-  background: #ffffff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
   width: 400px;
-  padding: 25px 25px 5px 25px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   z-index: 1;
   .el-input {
-    height: 38px;
+    height: 40px;
     input {
-      height: 38px;
+      height: 40px;
     }
   }
   .input-icon {
-    height: 39px;
+    height: 40px;
     width: 14px;
     margin-left: 2px;
   }
@@ -196,26 +207,14 @@ export default {
 }
 .login-code {
   width: 33%;
-  height: 38px;
+  height: 40px;
   float: right;
   img {
     cursor: pointer;
     vertical-align: middle;
   }
 }
-.el-login-footer {
-  height: 40px;
-  line-height: 40px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-family: Arial;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
 .login-code-img {
-  height: 38px;
+  height: 40px;
 }
 </style>

@@ -91,4 +91,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <select id="selectWorkImages" resultType="java.util.Map">
+        select id, work_name as workName, work_pic as workPic
+        from handcraft_work
+        where work_pic is not null and work_pic != ''
+        order by create_time desc
+        limit 10
+    </select>
 </mapper>

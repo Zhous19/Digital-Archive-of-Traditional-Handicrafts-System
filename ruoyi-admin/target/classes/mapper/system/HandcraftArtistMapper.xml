@@ -91,4 +91,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <select id="selectRegionCount" resultType="java.util.Map">
+        select region as regionName, count(id) as count
+        from handcraft_artist
+        where region is not null and region != ''
+        group by region
+        order by count desc
+    </select>
 </mapper>

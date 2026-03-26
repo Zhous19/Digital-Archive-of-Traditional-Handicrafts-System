@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,5 +93,11 @@ public class HandcraftArtistServiceImpl implements IHandcraftArtistService
     public int deleteHandcraftArtistById(Long id)
     {
         return handcraftArtistMapper.deleteHandcraftArtistById(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectRegionCount()
+    {
+        return handcraftArtistMapper.selectRegionCount();
     }
 }

@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.common.utils.file.FileUploadUtils;
@@ -185,5 +186,10 @@ public class HandcraftWorkServiceImpl implements IHandcraftWorkService {
             return "";
         }
         return originalFilename.substring(idx + 1).toLowerCase();
+    }
+
+    @Override
+    public List<Map<String, Object>> selectWorkImages() {
+        return handcraftWorkMapper.selectWorkImages();
     }
 }

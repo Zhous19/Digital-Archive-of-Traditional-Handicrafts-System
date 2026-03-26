@@ -12,6 +12,7 @@ import store from './store'
 import router from './router'
 import directive from './directive' // directive
 import plugins from './plugins' // plugins
+import request from '@/utils/request'
 import { download } from '@/utils/request'
 
 import './assets/icons' // icon
@@ -35,7 +36,9 @@ import ImagePreview from "@/components/ImagePreview"
 import DictTag from '@/components/DictTag'
 // 字典数据组件
 import DictData from '@/components/DictData'
-
+import * as echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+//全局引入ECharts
 // 全局方法挂载
 Vue.prototype.getDicts = getDicts
 Vue.prototype.getConfigKey = getConfigKey
@@ -46,6 +49,7 @@ Vue.prototype.selectDictLabel = selectDictLabel
 Vue.prototype.selectDictLabels = selectDictLabels
 Vue.prototype.download = download
 Vue.prototype.handleTree = handleTree
+Vue.prototype.$http = request
 
 // 全局组件挂载
 Vue.component('DictTag', DictTag)
