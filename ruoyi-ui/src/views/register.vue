@@ -43,6 +43,12 @@
           <img :src="codeUrl" @click="getCode" class="register-code-img"/>
         </div>
       </el-form-item>
+      <el-form-item prop="userType">
+        <el-select v-model="registerForm.userType" placeholder="请选择用户类型" style="width: 100%">
+          <el-option label="普通用户" value="0"></el-option>
+          <el-option label="匠人用户" value="1"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item style="width:100%;">
         <el-button
           :loading="loading"
@@ -59,10 +65,6 @@
         </div>
       </el-form-item>
     </el-form>
-    <!--  底部  -->
-    <div class="el-register-footer">
-      <span>Copyright © 2018-2025 ruoyi.vip All Rights Reserved.</span>
-    </div>
   </div>
 </template>
 
@@ -87,7 +89,8 @@ export default {
         password: "",
         confirmPassword: "",
         code: "",
-        uuid: ""
+        uuid: "",
+        userType: 0
       },
       registerRules: {
         username: [
@@ -97,13 +100,14 @@ export default {
         password: [
           { required: true, trigger: "blur", message: "请输入您的密码" },
           { min: 5, max: 20, message: "用户密码长度必须介于 5 和 20 之间", trigger: "blur" },
-          { pattern: /^[^<>"'|\\]+$/, message: "不能包含非法字符：< > \" ' \\\ |", trigger: "blur" }
+          { pattern: /^[^<>'"|\\]+$/, message: "不能包含非法字符：< > \" ' \\ |", trigger: "blur" }
         ],
         confirmPassword: [
           { required: true, trigger: "blur", message: "请再次输入您的密码" },
           { required: true, validator: equalToPassword, trigger: "blur" }
         ],
-        code: [{ required: true, trigger: "change", message: "请输入验证码" }]
+        code: [{ required: true, trigger: "change", message: "请输入验证码" }],
+        userType: [{ required: true, trigger: "change", message: "请选择用户类型" }]
       },
       loading: false,
       captchaEnabled: true
@@ -148,33 +152,49 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  height: 100%;
+}
+
 .register {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   height: 100%;
   background-image: url("../assets/images/login-background.jpg");
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-bottom: 100px;
 }
 .title {
   margin: 0px auto 30px auto;
   text-align: center;
-  color: #707070;
+  color: #333333;
+  font-weight: bold;
 }
 
 .register-form {
-  border-radius: 6px;
-  background: #ffffff;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
   width: 400px;
-  padding: 25px 25px 5px 25px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1;
   .el-input {
-    height: 38px;
+    height: 40px;
     input {
-      height: 38px;
+      height: 40px;
     }
   }
   .input-icon {
-    height: 39px;
+    height: 40px;
     width: 14px;
     margin-left: 2px;
   }
@@ -186,26 +206,14 @@ export default {
 }
 .register-code {
   width: 33%;
-  height: 38px;
+  height: 40px;
   float: right;
   img {
     cursor: pointer;
     vertical-align: middle;
   }
 }
-.el-register-footer {
-  height: 40px;
-  line-height: 40px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-family: Arial;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
 .register-code-img {
-  height: 38px;
+  height: 40px;
 }
 </style>

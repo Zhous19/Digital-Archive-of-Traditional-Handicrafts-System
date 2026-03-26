@@ -282,6 +282,38 @@ public class SysUserServiceImpl implements ISysUserService
     }
 
     /**
+     * 注册用户信息（带用户类型）
+     * 
+     * @param user 用户信息
+     * @param userType 用户类型：0-普通用户，1-匠人用户
+     * @return 结果
+     */
+    @Override
+    @Transactional
+    public boolean registerUser(SysUser user, Integer userType)
+    {
+        // 新增用户信息
+        int rows = userMapper.insertUser(user);
+        if (rows > 0) {
+            // 根据用户类型分配角色
+            Long[] roleIds = null;
+            if (userType == 1) {
+                // 匠人用户角色（假设角色ID为2）
+                roleIds = new Long[]{2L};
+            } else {
+                // 普通用户角色（假设角色ID为3）
+                roleIds = new Long[]{3L};
+            }
+            // 新增用户与角色管理
+            if (roleIds != null) {
+                insertUserRole(user.getUserId(), roleIds);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 修改保存用户信息
      * 
      * @param user 用户信息

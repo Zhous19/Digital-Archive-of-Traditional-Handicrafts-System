@@ -113,6 +113,7 @@
             type="text"
             icon="el-icon-upload2"
             @click="handleUploadOpen(scope.row)"
+            v-hasPermi="['system:work:edit']"
           >上传</el-button>
           <el-button
             size="mini"
