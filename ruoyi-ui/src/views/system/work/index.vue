@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="68px">
+    <el-form :model="queryParams" ref="queryForm" size="small" :inline="true" v-show="showSearch" label-width="100px">
       <el-form-item label="作品名称" prop="workName">
         <el-input
           v-model="queryParams.workName"
@@ -113,6 +113,7 @@
             type="text"
             icon="el-icon-upload2"
             @click="handleUploadOpen(scope.row)"
+            v-hasPermi="['system:work:edit']"
           >上传</el-button>
           <el-button
             size="mini"

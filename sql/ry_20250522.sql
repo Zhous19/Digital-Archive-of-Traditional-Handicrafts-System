@@ -163,6 +163,12 @@ insert into sys_menu values('1', '系统管理', '0', '1', 'system',           n
 insert into sys_menu values('2', '系统监控', '0', '2', 'monitor',          null, '', '', 1, 0, 'M', '0', '0', '', 'monitor',  'admin', sysdate(), '', null, '系统监控目录');
 insert into sys_menu values('3', '系统工具', '0', '3', 'tool',             null, '', '', 1, 0, 'M', '0', '0', '', 'tool',     'admin', sysdate(), '', null, '系统工具目录');
 insert into sys_menu values('4', '若依官网', '0', '4', 'http://ruoyi.vip', null, '', '', 0, 0, 'M', '0', '0', '', 'guide',    'admin', sysdate(), '', null, '若依官网地址');
+-- 手工艺档案管理菜单
+insert into sys_menu values('6', '档案管理', '0', '5', 'handcraft',           null, '', '', 1, 0, 'M', '0', '0', '', 'folder',   'admin', sysdate(), '', null, '手工艺档案管理目录');
+insert into sys_menu values('600', '作品管理', '6', '1', 'work', 'system/work/index',        '', '', 1, 0, 'C', '0', '0', 'system:work:list',        'picture',          'admin', sysdate(), '', null, '作品管理菜单');
+insert into sys_menu values('601', '技艺管理', '6', '2', 'tech', 'system/tech/index',        '', '', 1, 0, 'C', '0', '0', 'system:tech:list',        'skill',          'admin', sysdate(), '', null, '技艺管理菜单');
+insert into sys_menu values('602', '品类管理', '6', '3', 'category', 'system/category/index',        '', '', 1, 0, 'C', '0', '0', 'system:category:list',        'category',          'admin', sysdate(), '', null, '品类管理菜单');
+insert into sys_menu values('603', '匠人管理', '6', '4', 'artist', 'system/artist/index',        '', '', 1, 0, 'C', '0', '0', 'system:artist:list',        'user',          'admin', sysdate(), '', null, '匠人管理菜单');
 -- 二级菜单
 insert into sys_menu values('100',  '用户管理', '1',   '1', 'user',       'system/user/index',        '', '', 1, 0, 'C', '0', '0', 'system:user:list',        'user',          'admin', sysdate(), '', null, '用户管理菜单');
 insert into sys_menu values('101',  '角色管理', '1',   '2', 'role',       'system/role/index',        '', '', 1, 0, 'C', '0', '0', 'system:role:list',        'peoples',       'admin', sysdate(), '', null, '角色管理菜单');
@@ -241,6 +247,34 @@ insert into sys_menu values('1042', '登录查询', '501', '1', '#', '', '', '',
 insert into sys_menu values('1043', '登录删除', '501', '2', '#', '', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:remove',  '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1044', '日志导出', '501', '3', '#', '', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:export',  '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1045', '账户解锁', '501', '4', '#', '', '', '', 1, 0, 'F', '0', '0', 'monitor:logininfor:unlock',  '#', 'admin', sysdate(), '', null, '');
+
+-- 作品管理按钮
+insert into sys_menu values('1050', '作品查询', '500', '1', '', '', '', '', 1, 0, 'F', '0', '0', 'system:work:query', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1051', '作品新增', '500', '2', '', '', '', '', 1, 0, 'F', '0', '0', 'system:work:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1052', '作品修改', '500', '3', '', '', '', '', 1, 0, 'F', '0', '0', 'system:work:edit', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1053', '作品删除', '500', '4', '', '', '', '', 1, 0, 'F', '0', '0', 'system:work:remove', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1054', '作品导出', '500', '5', '', '', '', '', 1, 0, 'F', '0', '0', 'system:work:export', '#', 'admin', sysdate(), '', null, '');
+
+-- 技艺管理按钮
+insert into sys_menu values('1055', '技艺查询', '501', '1', '', '', '', '', 1, 0, 'F', '0', '0', 'system:tech:query', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1056', '技艺新增', '501', '2', '', '', '', '', 1, 0, 'F', '0', '0', 'system:tech:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1057', '技艺修改', '501', '3', '', '', '', '', 1, 0, 'F', '0', '0', 'system:tech:edit', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1058', '技艺删除', '501', '4', '', '', '', '', 1, 0, 'F', '0', '0', 'system:tech:remove', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1059', '技艺导出', '501', '5', '', '', '', '', 1, 0, 'F', '0', '0', 'system:tech:export', '#', 'admin', sysdate(), '', null, '');
+
+-- 品类管理按钮
+insert into sys_menu values('1060', '品类查询', '502', '1', '', '', '', '', 1, 0, 'F', '0', '0', 'system:category:query', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1061', '品类新增', '502', '2', '', '', '', '', 1, 0, 'F', '0', '0', 'system:category:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1062', '品类修改', '502', '3', '', '', '', '', 1, 0, 'F', '0', '0', 'system:category:edit', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1063', '品类删除', '502', '4', '', '', '', '', 1, 0, 'F', '0', '0', 'system:category:remove', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1064', '品类导出', '502', '5', '', '', '', '', 1, 0, 'F', '0', '0', 'system:category:export', '#', 'admin', sysdate(), '', null, '');
+
+-- 匠人管理按钮
+insert into sys_menu values('1065', '匠人查询', '503', '1', '', '', '', '', 1, 0, 'F', '0', '0', 'system:artist:query', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1066', '匠人新增', '503', '2', '', '', '', '', 1, 0, 'F', '0', '0', 'system:artist:add', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1067', '匠人修改', '503', '3', '', '', '', '', 1, 0, 'F', '0', '0', 'system:artist:edit', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1068', '匠人删除', '503', '4', '', '', '', '', 1, 0, 'F', '0', '0', 'system:artist:remove', '#', 'admin', sysdate(), '', null, '');
+insert into sys_menu values('1069', '匠人导出', '503', '5', '', '', '', '', 1, 0, 'F', '0', '0', 'system:artist:export', '#', 'admin', sysdate(), '', null, '');
 -- 在线用户按钮
 insert into sys_menu values('1046', '在线查询', '109', '1', '#', '', '', '', 1, 0, 'F', '0', '0', 'monitor:online:query',       '#', 'admin', sysdate(), '', null, '');
 insert into sys_menu values('1047', '批量强退', '109', '2', '#', '', '', '', 1, 0, 'F', '0', '0', 'monitor:online:batchLogout', '#', 'admin', sysdate(), '', null, '');
@@ -365,17 +399,36 @@ insert into sys_role_menu values ('2', '1046');
 insert into sys_role_menu values ('2', '1047');
 insert into sys_role_menu values ('2', '1048');
 insert into sys_role_menu values ('2', '1049');
+-- 档案管理菜单权限
+insert into sys_role_menu values ('2', '5');
+insert into sys_role_menu values ('2', '500');
+insert into sys_role_menu values ('2', '501');
+insert into sys_role_menu values ('2', '502');
+insert into sys_role_menu values ('2', '503');
+-- 作品管理按钮权限
 insert into sys_role_menu values ('2', '1050');
 insert into sys_role_menu values ('2', '1051');
 insert into sys_role_menu values ('2', '1052');
 insert into sys_role_menu values ('2', '1053');
 insert into sys_role_menu values ('2', '1054');
+-- 技艺管理按钮权限
 insert into sys_role_menu values ('2', '1055');
 insert into sys_role_menu values ('2', '1056');
 insert into sys_role_menu values ('2', '1057');
 insert into sys_role_menu values ('2', '1058');
 insert into sys_role_menu values ('2', '1059');
+-- 品类管理按钮权限
 insert into sys_role_menu values ('2', '1060');
+insert into sys_role_menu values ('2', '1061');
+insert into sys_role_menu values ('2', '1062');
+insert into sys_role_menu values ('2', '1063');
+insert into sys_role_menu values ('2', '1064');
+-- 匠人管理按钮权限
+insert into sys_role_menu values ('2', '1065');
+insert into sys_role_menu values ('2', '1066');
+insert into sys_role_menu values ('2', '1067');
+insert into sys_role_menu values ('2', '1068');
+insert into sys_role_menu values ('2', '1069');
 
 -- ----------------------------
 -- 8、角色和部门关联表  角色1-N部门
@@ -549,7 +602,7 @@ insert into sys_config values(1, '主框架页-默认皮肤样式名称',     's
 insert into sys_config values(2, '用户管理-账号初始密码',         'sys.user.initPassword',            '123456',        'Y', 'admin', sysdate(), '', null, '初始化密码 123456' );
 insert into sys_config values(3, '主框架页-侧边栏主题',           'sys.index.sideTheme',              'theme-dark',    'Y', 'admin', sysdate(), '', null, '深色主题theme-dark，浅色主题theme-light' );
 insert into sys_config values(4, '账号自助-验证码开关',           'sys.account.captchaEnabled',       'true',          'Y', 'admin', sysdate(), '', null, '是否开启验证码功能（true开启，false关闭）');
-insert into sys_config values(5, '账号自助-是否开启用户注册功能', 'sys.account.registerUser',         'false',         'Y', 'admin', sysdate(), '', null, '是否开启注册用户功能（true开启，false关闭）');
+insert into sys_config values(5, '账号自助-是否开启用户注册功能', 'sys.account.registerUser',         'true',         'Y', 'admin', sysdate(), '', null, '是否开启注册用户功能（true开启，false关闭）');
 insert into sys_config values(6, '用户登录-黑名单列表',           'sys.login.blackIPList',            '',              'Y', 'admin', sysdate(), '', null, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
 insert into sys_config values(7, '用户管理-初始密码修改策略',     'sys.account.initPasswordModify',   '1',             'Y', 'admin', sysdate(), '', null, '0：初始密码修改策略关闭，没有任何提示，1：提醒用户，如果未修改初始密码，则在登录时就会提醒修改密码对话框');
 insert into sys_config values(8, '用户管理-账号密码更新周期',     'sys.account.passwordValidateDays', '0',             'Y', 'admin', sysdate(), '', null, '密码更新周期（填写数字，数据初始化值为0不限制，若修改必须为大于0小于365的正整数），如果超过这个周期登录系统时，则在登录时就会提醒修改密码对话框');

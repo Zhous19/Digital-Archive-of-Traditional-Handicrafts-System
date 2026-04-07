@@ -1,6 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.system.domain.HandcraftWork;
 
 /**
@@ -58,4 +59,11 @@ public interface HandcraftWorkMapper
      * @return 结果
      */
     public int deleteHandcraftWorkByIds(Long[] ids);
+
+    /**
+     * 查询作品图片列表（用于首页轮播）
+     * 
+     * @return 作品图片列表
+     */
+    public List<Map<String, Object>> selectWorkImages();
 }

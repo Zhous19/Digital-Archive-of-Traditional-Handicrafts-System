@@ -121,6 +121,15 @@ public interface ISysUserService
     public boolean registerUser(SysUser user);
 
     /**
+     * 注册用户信息（带用户类型）
+     * 
+     * @param user 用户信息
+     * @param userType 用户类型：0-普通用户，1-匠人用户
+     * @return 结果
+     */
+    public boolean registerUser(SysUser user, Integer userType);
+
+    /**
      * 修改用户信息
      * 
      * @param user 用户信息

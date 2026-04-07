@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: process.env.VUE_APP_TITLE,
+      title: '传统手工艺数字档案库',
       logo: logoImg
     }
   }
@@ -55,8 +55,8 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
+  height: 60px;
+  line-height: 60px;
   background: #2b2f3a;
   text-align: center;
   overflow: hidden;
@@ -64,12 +64,15 @@ export default {
   & .sidebar-logo-link {
     height: 100%;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     & .sidebar-logo {
       width: 32px;
       height: 32px;
       vertical-align: middle;
-      margin-right: 12px;
+      margin-right: 8px;
     }
 
     & .sidebar-title {
@@ -77,16 +80,23 @@ export default {
       margin: 0;
       color: #fff;
       font-weight: 600;
-      line-height: 50px;
+      line-height: 60px;
       font-size: 14px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
       vertical-align: middle;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: calc(100% - 40px);
     }
   }
 
   &.collapse {
     .sidebar-logo {
       margin-right: 0px;
+    }
+    .sidebar-title {
+      display: none;
     }
   }
 }

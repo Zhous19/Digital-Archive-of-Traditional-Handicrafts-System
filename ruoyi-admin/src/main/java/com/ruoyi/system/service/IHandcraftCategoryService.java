@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.system.domain.HandcraftCategory;
 
 /**
@@ -58,4 +59,11 @@ public interface IHandcraftCategoryService
      * @return 结果
      */
     public int deleteHandcraftCategoryById(Long id);
+
+    /**
+     * 查询品类统计数据
+     * 
+     * @return 品类统计数据
+     */
+    public List<Map<String, Object>> selectCategoryCount();
 }

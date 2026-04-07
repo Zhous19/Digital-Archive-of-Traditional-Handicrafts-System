@@ -66,4 +66,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             #{id}
         </foreach>
     </delete>
+
+    <select id="selectCategoryCount" resultType="java.util.Map">
+        select c.category_name as categoryName, count(w.id) as count
+        from handcraft_category c
+        left join handcraft_work w on c.id = w.category_id
+        group by c.id, c.category_name
+        order by count desc
+    </select>
 </mapper>

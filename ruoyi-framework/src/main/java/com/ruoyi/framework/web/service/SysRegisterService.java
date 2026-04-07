@@ -79,7 +79,12 @@ public class SysRegisterService
             sysUser.setNickName(username);
             sysUser.setPwdUpdateDate(DateUtils.getNowDate());
             sysUser.setPassword(SecurityUtils.encryptPassword(password));
-            boolean regFlag = userService.registerUser(sysUser);
+            // 根据用户类型设置角色
+            Integer userType = registerBody.getUserType();
+            if (userType == null) {
+                userType = 0; // 默认普通用户
+            }
+            boolean regFlag = userService.registerUser(sysUser, userType);
             if (!regFlag)
             {
                 msg = "注册失败,请联系系统管理人员";

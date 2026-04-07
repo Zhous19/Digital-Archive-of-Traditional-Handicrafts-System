@@ -1,6 +1,7 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.common.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,5 +93,11 @@ public class HandcraftCategoryServiceImpl implements IHandcraftCategoryService
     public int deleteHandcraftCategoryById(Long id)
     {
         return handcraftCategoryMapper.deleteHandcraftCategoryById(id);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectCategoryCount()
+    {
+        return handcraftCategoryMapper.selectCategoryCount();
     }
 }

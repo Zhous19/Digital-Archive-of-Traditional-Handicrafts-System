@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
 import java.util.List;
+import java.util.Map;
 import com.ruoyi.system.domain.HandcraftWork;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -76,4 +77,11 @@ public interface IHandcraftWorkService {
      * @return 视频访问URL
      */
     public String uploadWorkVideo(Long id, MultipartFile file);
+
+    /**
+     * 获取作品图片列表（用于首页轮播）
+     *
+     * @return 作品图片列表
+     */
+    public List<Map<String, Object>> selectWorkImages();
 }
